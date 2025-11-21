@@ -12,6 +12,18 @@ const routes = (handler) => [
     path: "/threads/{threadId}",
     handler: handler.getThreadHandler,
   },
+  {
+    method: "GET",
+    path: "/threads",
+    handler: (request, h) => {
+      return h
+        .response({
+          status: "success",
+          message: "Rate limit test endpoint",
+        })
+        .code(200);
+    },
+  },
 ];
 
 module.exports = routes;
