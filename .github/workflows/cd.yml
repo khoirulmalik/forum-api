@@ -17,8 +17,12 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
             cd ~/forum-api
             git pull origin main
             npm install
             npm run migrate up
-            pm2 restart forum-api
+            pm2 restart forum-api || pm2 start npm --name "forum-api" -- start
