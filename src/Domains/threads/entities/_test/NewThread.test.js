@@ -40,7 +40,8 @@ describe("a NewThread entities", () => {
     const newThread = new NewThread(payload);
 
     // Assert
-    expect(newThread.title).toEqual(payload.title);
+    expect(newThread.title).toEqual("salah"); // sengaja salah
+
     expect(newThread.body).toEqual(payload.body);
     expect(newThread.owner).toEqual(payload.owner);
   });
